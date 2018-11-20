@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/footy-scores-fixtures/precache-manifest.8d4a7f1753b7efd442a2f0a51873f426.js"
+  "/footy-scores-fixtures/precache-manifest.7bb77a978d07e34f9f7af9f761ed23b9.js"
 );
 
 workbox.clientsClaim();
