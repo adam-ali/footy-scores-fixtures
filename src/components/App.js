@@ -8,6 +8,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 class App extends Component {
 
   render() {
+    console.log("This is the process.env", process.env.PUBLIC_URL)
+    
     return (
       <Router>
         <div>
