@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Navbar, NavItem, Nav, Button, ButtonToolbar, NavbarHeader, NavbarBrand } from "react-bootstrap";
+import { Navbar, NavItem, Nav, NavbarHeader, NavbarBrand } from "react-bootstrap";
 class NavigationBar extends Component {
 
     render() {
@@ -9,11 +9,11 @@ class NavigationBar extends Component {
             <Navbar>
             <Navbar.Header>
                 <Navbar.Brand>
-                <a href="#home">Footy Scores</a>
+                    <a href="#home">Footy updates</a>
                 </Navbar.Brand>
             </Navbar.Header>
             <Nav>
-                <NavItem eventKey={1} >
+                <NavItem  >
                     <Link to="/">Home</Link>
                 </NavItem>
                 <NavItem eventKey={2} href="#">

@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import NavigationBar from '../nav/nav';
+import { Jumbotron } from "react-bootstrap";
+
 class Home extends Component {
 
     render() {
         return(
         <div>
             <NavigationBar></NavigationBar>
-
-            <h1>Home </h1>
-            <p>jaskjcnckchwiub </p>
+            <Jumbotron>
+                <h1>Home </h1>
+                <p>Welcome to the home of football updates ... </p>
+            </Jumbotron>
         </div>
             
         );

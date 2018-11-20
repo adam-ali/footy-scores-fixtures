@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import NavigationBar from '../nav/nav';
+import { Jumbotron } from "react-bootstrap";
 
 class Fixtures extends Component {
 
@@ -7,9 +8,10 @@ class Fixtures extends Component {
         return(
         <div>
             <NavigationBar></NavigationBar>
-            <h1>Fixtures </h1>
-            <p>jaskjcnckchwiub </p>
-
+            <Jumbotron>
+                <h1>Fixtures </h1>
+                <p>jaskjcnckchwiub </p>
+            </Jumbotron>
 
         </div>
             
