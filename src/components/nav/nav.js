@@ -13,13 +13,13 @@ class NavigationBar extends Component {
                 </Navbar.Brand>
             </Navbar.Header>
             <Nav>
-                <NavItem  >
+                <NavItem componentClass='span'>
                     <Link to="/">Home</Link>
                 </NavItem>
-                <NavItem eventKey={2} href="#">
+                <NavItem componentClass='span' eventKey={2} href="#">
                     <Link to="/results/">Results</Link>
                 </NavItem>
-                <NavItem eventKey={2} href="#">
+                <NavItem componentClass='span' eventKey={2} href="#">
                     <Link to="/fixtures/">Results</Link>
                 </NavItem>
             </Nav>

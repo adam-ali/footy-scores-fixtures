@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import NavigationBar from '../nav/nav';
 import { Jumbotron, Grid, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
+import ToCome from './matches-to-come';
+import Played from './matches-played';
+
 const request = require('superagent');
 
 class Results extends Component {
@@ -16,23 +19,24 @@ class Results extends Component {
             }
         };
 
+       
+    }
+    componentDidMount() {
         request
         .get('https://api.football-data.org/v2/competitions/PL/matches/?matchday=13')
         .set('X-Auth-Token', 'f9e9c780ab5b47f9a74f1655c871761d')
         .end((err, res) =>{
           // Do something
-          console.log(res.body);
-
-          this.state = {
+          this.setState({
               matches: res.body.matches,
               details: {
                   competition: res.body.competition,
                   matchDay: res.body.filters.matchday
               }
-          }
+          });
         });
     }
-    changeMatchDay(action){
+    changeMatchDay(action) {
         let matchDay = 13;
         if(action === 'prev'){
             matchDay = +this.state.details.matchDay - 1;
@@ -70,7 +74,7 @@ class Results extends Component {
         console.log(this.state);
 
         request
-        .get(`https://api.football-data.org/v2/competitions/PL/matches/?matchday=14`)
+        .get(`https://api.football-data.org/v2/competitions/PL/matches/?matchday=15`)
         .set('X-Auth-Token', 'f9e9c780ab5b47f9a74f1655c871761d')
         .end((err, res) => {
           // Do something
@@ -88,6 +92,7 @@ class Results extends Component {
 
     }
     render(){
+        console.log('matches')
         console.log(this.state.matches);
 
         return(
@@ -109,27 +114,20 @@ class Results extends Component {
                         <Col xs={10} md={10}>
                         
                             <ListGroup>
-                            {this.state.matches.forEach(item=>{
-                                            return(
-                                <ListGroupItem href="#">
-                                    <Grid>
-
-                                        <Row className="show-grid">
-                                            <Col xs={5} md={5}>
-                                                <p className='center'>{item.homeTeam.name}</p>
-                                            </Col>
-                                            <Col xs={2} md={2}>
-                                                <p className='center'>item</p>
-                                            </Col>
-                                            <Col xs={5} md={5}>
-                                                <p className='center'>{item.awayTeam.name}</p>
-                                            </Col>
-                                        </Row>
-                                       
-                                    </Grid>
-                                </ListGroupItem>
-                                )})}  
-                                <ListGroupItem href="#">Link 2</ListGroupItem>
+                    
+                            {this.state.matches.map((item,index)=>{
+                                if (item.score.winner) { //check if the match has been played
+                                    return(
+                                        <Played matches={item}></Played>
+                                    )
+                                    console.log(item.score.winner)
+                                } else {
+                                    console.log('not played yet')
+                                    return(
+                                        <ToCome matches={item} key={index}></ToCome>
+                                    )
+                                }
+                            })}  
                             </ListGroup>
 
                         </Col>
