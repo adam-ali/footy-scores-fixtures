@@ -9,8 +9,6 @@ class toCome extends Component {
     }
 
     render(){
-        console.log('matches')
-        console.log(this.props.matches);
 
         return(
             <div >

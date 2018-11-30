@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Navbar, NavItem, Nav, NavbarHeader, NavbarBrand } from "react-bootstrap";
+import { Navbar, NavItem, Nav } from "react-bootstrap";
 class NavigationBar extends Component {
 
     render() {

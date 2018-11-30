@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import NavigationBar from '../nav/nav';
-import { Jumbotron, Grid, Row, Col, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Jumbotron, Grid, Row, Col, ListGroup } from "react-bootstrap";
 import ToCome from './matches-to-come';
 import Played from './matches-played';
 
@@ -27,46 +27,38 @@ class Results extends Component {
         .set('X-Auth-Token', 'f9e9c780ab5b47f9a74f1655c871761d')
         .end((err, res) =>{
           // Do something
-          this.setState({
-              matches: res.body.matches,
-              details: {
-                  competition: res.body.competition,
-                  matchDay: res.body.filters.matchday
-              }
-          });
+          if (err) {
+              console.log(err)
+          } else{
+            this.setState({
+                matches: res.body.matches,
+                details: {
+                    competition: res.body.competition,
+                    matchDay: res.body.filters.matchday
+                }
+            });
+          }
         });
     }
-    changeMatchDay(action) {
-        let matchDay = 13;
-        if(action === 'prev'){
-            matchDay = +this.state.details.matchDay - 1;
-        } else if (action === 'next'){
-            matchDay = +this.state.details.matchDay + 1;            
+    changeMatchDay(matchDay) {
+        if (matchDay > 0 && matchDay < 39) {
+            request
+            .get(`https://api.football-data.org/v2/competitions/PL/matches/?matchday=${matchDay}`)
+            .set('X-Auth-Token', 'f9e9c780ab5b47f9a74f1655c871761d')
+            .end((err, res) => {
+                if (err) {
+                    console.log(err)
+                }
+              this.setState({
+                matches: res.body.matches,
+                details: {
+                    competition: res.body.competition,
+                    matchDay: res.body.filters.matchday
+                }
+                });
+            });
         }
-        console.log(matchDay)
 
-        // this.state.details.matchDay = matchDay;
-        // this.setState({
-        //     details:{
-        //         matchDay: matchDay
-        //     }
-        // })
-        request
-        .get(`https://api.football-data.org/v2/competitions/PL/matches/?matchday=${matchDay}`)
-        .set('X-Auth-Token', 'f9e9c780ab5b47f9a74f1655c871761d')
-        .end((err, res) => {
-          // Do something
-          console.log('change')
-          console.log(res.body)
-
-          this.setState({
-              matches: res.body.matches,
-              details: {
-                  competition: res.body.competition.name,
-                  matchDay: res.body.filters
-              }
-          });
-        });
     }
     btnCLick(){
 
@@ -92,9 +84,7 @@ class Results extends Component {
 
     }
     render(){
-        console.log('matches')
-        console.log(this.state.matches);
-
+        let matchDay = this.state.details.matchDay;
         return(
             <div>
                 <NavigationBar></NavigationBar>
@@ -104,25 +94,22 @@ class Results extends Component {
                 <Grid>
                     <Row className="show-grid">
                         <Col xs={12} md={12}>
-                            <h1 className='center'>Results {this.state.details.matchDay}</h1>
+                            <h1 className='center'>MatchDay {this.state.details.matchDay}</h1>
                         </Col>
                     </Row>
                     <Row className="show-grid">
                         <Col xs={1} md={1}>
-                            <p onClick={ ()=> this.changeMatchDay(12) }>Previous</p>
+                            <p onClick={ ()=> this.changeMatchDay(matchDay-1) }>Previous</p>
                         </Col>
-                        <Col xs={10} md={10}>
-                        
+                        <Col xs={10} md={10}>    
                             <ListGroup>
                     
                             {this.state.matches.map((item,index)=>{
                                 if (item.score.winner) { //check if the match has been played
                                     return(
-                                        <Played matches={item}></Played>
+                                        <Played matches={item} key={index}></Played>
                                     )
-                                    console.log(item.score.winner)
                                 } else {
-                                    console.log('not played yet')
                                     return(
                                         <ToCome matches={item} key={index}></ToCome>
                                     )
@@ -132,7 +119,7 @@ class Results extends Component {
 
                         </Col>
                         <Col xs={1} md={1}>
-                            <p onClick={ ()=> this.changeMatchDay('prev') }>Next</p>
+                            <p onClick={ ()=> this.changeMatchDay(+matchDay+1) }>Next</p>
                         </Col>
                     </Row>
                 </Grid>

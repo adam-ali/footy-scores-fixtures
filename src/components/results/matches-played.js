@@ -5,12 +5,12 @@ class played extends Component {
     constructor(props) {
         super(props);
         // Don't call this.setState() here!
-        this.state = { };
+        this.state = {};
     }
 
     render(){
-        console.log('matches')
-        console.log(this.props.matches);
+        let homeTeamScore = this.props.matches.score.fullTime.homeTeam;
+        let awayTeamScore = this.props.matches.score.fullTime.awayTeam;
 
         return(
             <div >
@@ -22,7 +22,7 @@ class played extends Component {
                                 <p className='center'>{this.props.matches.homeTeam.name}</p>
                             </Col>
                             <Col xs={2} md={2}>
-                                <p className='center'>Vs</p>
+                                <p className='center'>{homeTeamScore}-{awayTeamScore}</p>
                             </Col>
                             <Col xs={5} md={5}>
                                 <p className='center'>{this.props.matches.awayTeam.name}</p>
