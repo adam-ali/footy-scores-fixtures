@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Results from './results/results'
-import Table from './table/table'
+import ResultsAndFixtures from './results&fixtures/results&fixtures'
+import CurrentStandings from './table/table'
 import Home from './home/home'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -14,8 +14,8 @@ class App extends Component {
       <Router>
         <div>
           <Route path="/" exact component={Home} />
-          <Route path="/results/" component={Results} />
-          <Route path="/table/" component={Table} />
+          <Route path="/results/" component={ResultsAndFixtures} />
+          <Route path="/table/" component={CurrentStandings} />
         </div>
       </Router>
     );

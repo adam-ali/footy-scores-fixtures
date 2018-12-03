@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import NavigationBar from '../nav/nav';
-import { Jumbotron } from "react-bootstrap";
+import { Jumbotron, Table } from "react-bootstrap";
 const request = require('superagent');
 
-class Table extends Component {
+class CurrentStandings extends Component {
     _isMounted = false;
 
     constructor(props) {
@@ -41,17 +41,24 @@ class Table extends Component {
             <NavigationBar></NavigationBar>
             <Jumbotron>
                 <h1>Table Current Standings</h1>
-                <p>jaskjcnckchwiu</p>
+                <p>Game week: </p>
 
 
-                <table striped bordered condensed hover>
+                <Table striped bordered condensed hover>
     
                     <thead>
                         <tr>
                             <th>Positon</th>
                             <th>Name</th>
-                            <th>points</th>
+                            <th>Played</th>
                             <th>Won</th>
+                            <th>Drawn</th>
+                            <th>Lost</th>
+                            <th>For</th>
+                            <th>Against</th>
+                            <th>GD</th>
+                            <th>points</th>
+
                         </tr>
                     </thead>
 
@@ -61,14 +68,21 @@ class Table extends Component {
                         return (
                             <tr key={index}>
                                 <td>{item.position}</td>
-                                <td>{item.team.name}</td>
-                                <td>{item.points}</td>
+                                <td> <b>{item.team.name} </b></td>
+                                <td>{item.playedGames}</td>
                                 <td>{item.won}</td>
+                                <td>{item.draw}</td>
+                                <td>{item.lost}</td>
+                                <td>{item.goalsFor}</td>
+                                <td>{item.goalsAgainst}</td>
+                                <td>{item.goalDifference}</td>
+                                <td><b>{item.points}</b></td>
+
                             </tr>
                         );
                     })}
                     </tbody>
-                </table>
+                </Table>
             </Jumbotron>
 
         </div>
@@ -77,4 +91,4 @@ class Table extends Component {
     }
 }
 
-export default Table
+export default CurrentStandings

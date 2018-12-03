@@ -6,7 +6,7 @@ import Played from './matches-played';
 
 const request = require('superagent');
 
-class Results extends Component {
+class ResultsAndFixtures extends Component {
     _isMounted = false;
 
     constructor(props) {
@@ -135,4 +135,4 @@ class Results extends Component {
 
 }
 
-export default Results;
+export default ResultsAndFixtures;
