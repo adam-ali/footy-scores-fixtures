@@ -11,6 +11,7 @@ class played extends Component {
     render(){
         let homeTeamScore = this.props.matches.score.fullTime.homeTeam;
         let awayTeamScore = this.props.matches.score.fullTime.awayTeam;
+        console.log(this.props.matches)
 
         return(
             <div >
@@ -29,8 +30,15 @@ class played extends Component {
                             </Col>
                         </Row>
                     
+                        {/* <Row className="show-grid">
+                            <Col xs={12} md={12}>
+                                <p className='center'>{this.props}</p>
+                            </Col>
+                        </Row> */}
+
                     </Grid>
                 </ListGroupItem>
+
             </div>
         )
 

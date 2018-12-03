@@ -4,12 +4,10 @@ import { Grid, Row, Col, ListGroupItem } from "react-bootstrap";
 class toCome extends Component {
     constructor(props) {
         super(props);
-        // Don't call this.setState() here!
         this.state = { };
     }
 
     render(){
-
         return(
             <div >
                 <ListGroupItem href="#" >

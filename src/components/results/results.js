@@ -43,24 +43,24 @@ class Results extends Component {
         this._isMounted = false;
       }
     getCurrentMatchday(){
-        request
-        .get('https://api.football-data.org/v2/competitions/PL/standings/')
-        .set('X-Auth-Token', 'f9e9c780ab5b47f9a74f1655c871761d')
-        .end((err, res) =>{
-            if (err) {
-                console.log(err)
-            } else{
-                if (this._isMounted) {
+        // request
+        // .get('https://api.football-data.org/v2/competitions/PL/standings/')
+        // .set('X-Auth-Token', 'f9e9c780ab5b47f9a74f1655c871761d')
+        // .end((err, res) =>{
+        //     if (err) {
+        //         console.log(err)
+        //     } else{
+        //         if (this._isMounted) {
 
                     this.setState({
-                        currentMatchDay: res.body.season.currentMatchday,
-                        selectedMatchDay: res.body.season.currentMatchday
+                        currentMatchDay: 15,// res.body.season.currentMatchday,
+                        selectedMatchDay: 15 // res.body.season.currentMatchday
                     });
                     this.setCurrentMatches()
-                }
-            }
+        //         }
+        //     }
 
-        });
+        // });
     }
     setCurrentMatches(matchDay){
         let currentMatches = this.state.allMatches.filter((item)=>{
@@ -86,7 +86,6 @@ class Results extends Component {
             <div>
                 <NavigationBar></NavigationBar>
                 <Jumbotron>
-
 
                 <Grid>
                     <Row className="show-grid">

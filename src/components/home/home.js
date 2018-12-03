@@ -5,6 +5,7 @@ import { Jumbotron } from "react-bootstrap";
 class Home extends Component {
 
     render() {
+        console.log('HOme pge renderedd')
         return(
         <div>
             <NavigationBar></NavigationBar>

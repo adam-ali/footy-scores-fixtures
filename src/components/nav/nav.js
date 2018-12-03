@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { Navbar, NavItem, Nav } from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
 
@@ -7,7 +6,6 @@ class NavigationBar extends Component {
 
     render() {
         return(
-
         <div>
             <Navbar>
             <Navbar.Header>
@@ -16,8 +14,6 @@ class NavigationBar extends Component {
                 </Navbar.Brand>
             </Navbar.Header>
             <Nav>
-
-
                 <LinkContainer to="/" >
                     <NavItem eventKey={1} href="#">Home</NavItem>
                 </LinkContainer>
